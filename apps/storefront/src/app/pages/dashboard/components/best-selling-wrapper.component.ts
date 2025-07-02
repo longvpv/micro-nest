@@ -14,17 +14,21 @@ import { FallbackAppComponent } from '../../../fallback/fallback-app.module';
 })
 export class BestSellingWrapperComponent implements OnInit {
     component?: Type<unknown>;
-
     async ngOnInit() {
-        const loaded = await loadRemoteWithFallback<any>(
-            'product-app',
-            './BestSellingFragment',
-            () =>
-                import('../../../fallback/fallback-app.module').then(
-                    (m) => m.FallbackAppComponent,
-                ),
-        );
-
-        this.component = loaded.BestSellingComponent || loaded;
+        const module = await import('product-app/BestSellingFragment');
+        this.component = module.BestSellingComponent || module;
     }
+
+    // async ngOnInit() {
+    //     const loaded = await loadRemoteWithFallback<any>(
+    //         'product-app',
+    //         'BestSellingFragment',
+    //         () =>
+    //             import('../../../fallback/fallback-app.module').then(
+    //                 (m) => m.FallbackAppComponent
+    //             )
+    //     );
+
+    //     this.component = loaded.BestSellingComponent || loaded;
+    // }
 }

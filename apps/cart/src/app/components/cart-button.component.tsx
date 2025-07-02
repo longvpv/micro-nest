@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router';
 const CART_KEY = 'cartItems';
 
 const CartButton = () => {
-    const [ count, setCount ] = useState(0);
+    const [count, setCount] = useState(0);
     // const navigate = useNavigate();
 
-    const navigate = (path: string) => { console.log(path); };
+    const navigate = (path: string) => {
+        console.log(path);
+    };
 
     useEffect(() => {
         const stored = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
@@ -35,13 +37,12 @@ const CartButton = () => {
             </svg>
             {count > 0 && (
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-          {count}
-        </span>
+                    {count}
+                </span>
             )}
         </a>
     );
 };
-
 
 export function defineCartButtonElement() {
     class CartButtonElement extends HTMLElement {
@@ -64,7 +65,6 @@ export function defineCartButtonElement() {
         customElements.define('mfe-cart-button', CartButtonElement);
     }
 }
-
 
 defineCartButtonElement();
 export default CartButton;

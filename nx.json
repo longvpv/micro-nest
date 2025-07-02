@@ -129,5 +129,6 @@
             "linter": "eslint",
             "unitTestRunner": "jest"
         }
-    }
+    },
+    "nxCloudId": "685d6799728e146012fc7f39"
 }
